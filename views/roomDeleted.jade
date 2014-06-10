@@ -1,0 +1,17 @@
+
+extends layout
+
+block content
+	#four04 Deleting...
+
+	input(type='hidden', value= msg)#res
+	include modals/alert
+	include modals/form-errors
+	include modals/confirm
+
+block scripts
+	script(src='/vendor/jquery.min.js')
+	script(src='/vendor/jquery.form.js')
+	script(src='/vendor/bootstrap-modal.js')
+	script(src='/vendor/bootstrap-transition.js')
+	script(src='/js/views/roomDeleted.js')

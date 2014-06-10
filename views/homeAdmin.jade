@@ -1,0 +1,20 @@
+
+extends layout
+
+block content
+
+	include navbar
+	include account
+	include modals/alert
+	include modals/form-errors
+	include modals/confirm
+
+block scripts
+	script(src='/vendor/jquery.min.js')
+	script(src='/vendor/jquery.form.js')
+	script(src='/vendor/bootstrap-modal.js')
+	script(src='/vendor/bootstrap-transition.js')
+	script(src='/vendor/selector/bootstrap-select.js')
+	script(src='/js/views/homeAdmin.js')
+	script(src='/js/controllers/homeAdminController.js')
+	script(src='/js/form-validators/accountValidator.js')
