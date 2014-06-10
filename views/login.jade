@@ -3,57 +3,57 @@ extends layout
 
 block content
 
-	#container-login
-		#certificate-login-container.well.span4
-			h1 With Certificate
-			button#btn-patient.btn Patient
-			button#btn-doctor.btn Doctor
-			button#btn-planner.btn Planner
-			button#btn-admin.btn Admin
-		#login-container
-			h1 Login
-			form( method="post")#login-form.form-horizontal.well.span6
-				fieldset
-					#dni-cg.control-group
-						label.control-label(for='dni-tf') Dni
-						.controls
-							input#dni-tf.input-xlarge(type='text', name='dni')
+    #container-login
+        #certificate-login-container.well.span4
+            h1 With Certificate
+            button#btn-patient.btn Patient
+            button#btn-doctor.btn Doctor
+            button#btn-planner.btn Planner
+            button#btn-admin.btn Admin
+        #login-container
+            h1 Login
+            form( method="post")#login-form.form-horizontal.well.span6
+                fieldset
+                    #dni-cg.control-group
+                        label.control-label(for='dni-tf') Dni
+                        .controls
+                            input#dni-tf.input-xlarge(type='text', name='dni')
 
 
-					#radio-cg.radio-inline
-						label.control-label(for='radio-tf') Patient
-							input.radio-tf(type='radio', value=0, name='db', checked=true)
-						label.control-label(for='radio-tf') Doctor
-							input.radio-tf(type='radio', value=1, name='db')
-						label.control-label(for='radio-tf') Planner
-							input.radio-tf(type='radio', value=2, name='db')
-						label.control-label(for='radio-tf') Admin
-							input.radio-tf(type='radio', value=3, name='db')
+                    #radio-cg.radio-inline
+                        label.control-label(for='radio-tf') Patient
+                            input.radio-tf(type='radio', value=0, name='db', checked=true)
+                        label.control-label(for='radio-tf') Doctor
+                            input.radio-tf(type='radio', value=1, name='db')
+                        label.control-label(for='radio-tf') Planner
+                            input.radio-tf(type='radio', value=2, name='db')
+                        label.control-label(for='radio-tf') Admin
+                            input.radio-tf(type='radio', value=3, name='db')
 
-					#pass-cg.control-group
-						label.control-label(for='pass-tf') Password
-						.controls
-							input#pass-tf.input-xlarge(type='password', name='pass', value='')
+                    #pass-cg.control-group
+                        label.control-label(for='pass-tf') Password
+                        .controls
+                            input#pass-tf.input-xlarge(type='password', name='pass', value='')
 
-					button(type="submit")#btn-login.btn.btn-primary
-						i.icon-lock.icon-white
-						| Iniciar Sesión
+                    button(type="submit")#btn-login.btn.btn-primary
+                        i.icon-lock.icon-white
+                        | Iniciar Sesión
 
-					label#remember-me.checkbox Recordarme
-						input(type="checkbox", checked='checked')
+                    label#remember-me.checkbox Recordarme
+                        input(type="checkbox", checked='checked')
 
 
-	include modals/alert
-	include modals/form-errors
+    include modals/alert
+    include modals/form-errors
 
 block scripts
-	script(src='/vendor/jquery.min.js')
-	script(src='/vendor/jquery.form.js')
-	script(src='/vendor/bootstrap-modal.js')
-	script(src='/vendor/bootstrap-transition.js')
-	script(src='/js/views/login.js')
-	script(src='/js/controllers/loginController.js')
-	script(src='/js/form-validators/loginValidator.js')
-				
+    script(src='/vendor/jquery.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/vendor/bootstrap-modal.js')
+    script(src='/vendor/bootstrap-transition.js')
+    script(src='/js/views/login.js')
+    script(src='/js/controllers/loginController.js')
+    script(src='/js/form-validators/loginValidator.js')
+                
 
 

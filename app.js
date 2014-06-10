@@ -91,7 +91,7 @@ http.createServer(appHttp).listen(appHttp.get('port'), function(){
 });
 
 
-//For delete all rooms, uncomment de last line
+
 N.API.init(config.nuve.superserviceID, config.nuve.superserviceKey, 'http://localhost:3000/');
 
 function deleteAllRooms() {
@@ -110,7 +110,7 @@ function deleteAllRooms() {
         }
     });
 }
-
+//For delete all rooms, uncomment de last line
 //deleteAllRooms();
 
 

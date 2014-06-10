@@ -5,47 +5,47 @@
 input(type='hidden', value= user._id)#userId
 
 #account-form-container
-	form( method="post")#account-form.form-horizontal.well.span6
-		h1
-		p#sub1.subheading Please tell us a little about yourself.
-		hr
-		fieldset
-			#name-cg.control-group
-				label.control-label(for='name-tf') Name
-				.controls
-					input#name-tf.input-xlarge(type='text', name='name', value= user.name)
+    form( method="post")#account-form.form-horizontal.well.span6
+        h1
+        p#sub1.subheading Please tell us a little about yourself.
+        hr
+        fieldset
+            #name-cg.control-group
+                label.control-label(for='name-tf') Name
+                .controls
+                    input#name-tf.input-xlarge(type='text', name='name', value= user.name)
 
-			#dni-cg.control-group
-				label.control-label(for='dni-tf') Dni
-				.controls
-					input#dni-tf.input-xlarge(type='text', name='dni', value= user.dni)
+            #dni-cg.control-group
+                label.control-label(for='dni-tf') Dni
+                .controls
+                    input#dni-tf.input-xlarge(type='text', name='dni', value= user.dni)
 
-			#radio-cg.radio-inline
-				label.control-label(for='radio-tf') Patient
-					input.radio-tf(type='radio', value=0, name='db', checked=true)
-				label.control-label(for='radio-tf') Doctor
-					input.radio-tf(type='radio', value=1, name='db')
-				label.control-label(for='radio-tf') Planner
-					input.radio-tf(type='radio', value=2, name='db')
-				label.control-label(for='radio-tf') Admin
-					input.radio-tf(type='radio', value=3, name='db')
+            #radio-cg.radio-inline
+                label.control-label(for='radio-tf') Patient
+                    input.radio-tf(type='radio', value=0, name='db', checked=true)
+                label.control-label(for='radio-tf') Doctor
+                    input.radio-tf(type='radio', value=1, name='db')
+                label.control-label(for='radio-tf') Planner
+                    input.radio-tf(type='radio', value=2, name='db')
+                label.control-label(for='radio-tf') Admin
+                    input.radio-tf(type='radio', value=3, name='db')
 
-			#doctors-cg
-				label.control-label Doctor
-				select.selectpicker.show-menu-arrow
+            #doctors-cg
+                label.control-label Doctor
+                select.selectpicker.show-menu-arrow
 
-			hr
-			p#sub2.subheading
-			#pass-cg.control-group
-				label.control-label(for='pass-tf') Password
-				.controls
-					input#pass-tf.input-xlarge(type='password', name='pass', value='')
-				label.control-label(for='pass-tfv') Repeat Password
-				.controls
-					input#pass-tfv.input-xlarge(type='password', name='passv', value='')
-			.form-actions
-				button(type='submit')#account-form-btn0.btn
-				button(type='button')#account-form-btn1.btn
+            hr
+            p#sub2.subheading
+            #pass-cg.control-group
+                label.control-label(for='pass-tf') Password
+                .controls
+                    input#pass-tf.input-xlarge(type='password', name='pass', value='')
+                label.control-label(for='pass-tfv') Repeat Password
+                .controls
+                    input#pass-tfv.input-xlarge(type='password', name='passv', value='')
+            .form-actions
+                button(type='submit')#account-form-btn0.btn
+                button(type='button')#account-form-btn1.btn
 
 // display form errors in a custom modal window //
 

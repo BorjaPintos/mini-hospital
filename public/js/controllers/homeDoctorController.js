@@ -17,6 +17,13 @@ function HomeDoctorController()
 
 // click room //
     $('#but-room').click(function(){ that.getRoom(); });
+    
+    
+//handle meeting
+   $('#meetingRoom').click(function(){
+        that.getMeetingId();
+        that.refreshScreen('#meeting-container',that.onClickMeeting); 
+    });
 
 
 //handle account settings
@@ -32,8 +39,6 @@ function HomeDoctorController()
         that.refreshScreen('#room-container',that.onClickRooms);
     });
             
-
-
     $('#btnBack').click(function(){
         $('#calendar').fullCalendar('prev');
         start = $('#calendar').fullCalendar('getDate');
@@ -130,6 +135,29 @@ function HomeDoctorController()
             
         });
     };
+    
+    this.getMeetingId = function(){
+
+        var getMeeting = function(callback){
+            var req = new XMLHttpRequest();
+            var url = '/' + 'getMeetingId';
+            var body = {};
+            req.onreadystatechange = function () {
+              if (req.readyState === 4) { //dates already received
+                callback(req.responseText);
+              }
+            };
+
+            req.open('POST', url, true);
+            req.setRequestHeader('Content-Type', 'application/json');
+            req.send(JSON.stringify(body));
+        };
+
+        getMeeting(function(response){
+            console.log(response);
+            $('#meeting-btn').click(function(){window.location.href = '/meeting/'+response}   );
+        });
+    };
 
 }
 
@@ -167,6 +195,8 @@ HomeDoctorController.prototype.init = function()
     $('#account-form-btn0').addClass('btn-primary');
     $('#account-form-btn1').hide();
     $('#doctors-cg').hide();
+    $('#meeting-btn').html('Join Meeting');
+    $('#meeting-btn').addClass('btn-primary');
     this.createCalendar();
     this.updateEvents();
     this.onClickRooms();
@@ -178,10 +208,12 @@ HomeDoctorController.prototype.onClickSettings = function()
 {
 
     $('#room-container').hide();
+    $('#meeting-container').hide();
     $('#account-form').show();
 
     $('#settings').addClass('active');
     $('#rooms').removeClass('active');
+    $('#meeting').removeClass('active');
 
     $('#account-form h1').text('Account Settings');
     $('#account-form #sub1').text('Here are the current settings for your account.');
@@ -193,6 +225,23 @@ HomeDoctorController.prototype.onClickSettings = function()
     $('#pass-tfv').val('');
     $('#account-form-btn0').show();
     $now = $('#account-form');
+
+
+};
+
+HomeDoctorController.prototype.onClickMeeting = function()
+{
+
+    $('#room-container').hide();
+    $('#account-form').hide();
+    $('#meeting-container').show();
+    
+    $('#settings').removeClass('active');
+    $('#rooms').removeClass('active');
+    $('#meeting').addClass('active');
+
+    $('#meeting-btn').show();
+    $now = $('#meeting-container');
 
 
 };
@@ -292,8 +341,10 @@ HomeDoctorController.prototype.onClickRooms = function()
 
     $('#settings').removeClass('active');
     $('#rooms').addClass('active');
+    $('#meeting').removeClass('active');
     $('#room-container').show();
     $('#account-form').hide();
+    $('#meeting-container').hide();
     $now = $('#room-container');
     $('#calendar').fullCalendar('render');
 

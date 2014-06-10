@@ -1,12 +1,14 @@
 
-var AM = require('../lib/account-manager');
-var DM = require('../lib/dates-manager');
-var PR = require('../lib/permissions');
-var N = require('../lib/external/nuve');
+var AM = require('../lib/account-manager'),
+    DM = require('../lib/dates-manager'),
+    PR = require('../lib/permissions'),
+    N = require('../lib/external/nuve'),
 
-var DBPATIENTS = 0;
-var DBDOCTORS = 1;
-var DBPLANNERS = 2;
+    DBPATIENTS = 0,
+    DBDOCTORS = 1,
+    DBPLANNERS = 2,
+    
+    meetingRoom;
 
 module.exports = function(app) {
     'use strict';
@@ -472,6 +474,102 @@ module.exports = function(app) {
                     }    
                 }); 
             }, function(){res.render('404', { title: 'Page Not Found'});});
+        }
+    });
+    
+    app.get('/createMeeting', function (req,res){
+    
+    
+        var error = function(){
+            res.send('error create meetingRoom p2p', 400);
+            console.log('error on createRoom p2p');
+        };
+        
+        PR.isAdmin(req.session.user.dni,
+                   req.session.db,
+                   function(e,o){
+            if (o){
+                N.API.getRooms(function (roomlist) {
+                    var rooms = JSON.parse(roomlist);
+		            if (rooms.length === 0) {
+		                N.API.createRoom('meetingRoom', function (roomID) {
+		                    meetingRoom = roomID._id;
+		                    console.log('Created room ', meetingRoom);
+		                    res.send('ok');
+		                },error,{p2p: true});
+
+		            } else {
+			            for (var x=0; x<rooms.length; x++){
+                            if (rooms[x].name === 'meetingRoom'){
+				                meetingRoom  = rooms[x]._id;
+				                console.log('Using room ', meetingRoom);
+				                res.send('ok');
+				                continue;
+			                }
+			            }
+			            if (!meetingRoom){
+                            N.API.createRoom('meetingRoom', function (roomID) {
+                                meetingRoom = roomID._id;
+                                console.log('Created room ', meetingRoom);
+                                res.send('ok');
+                            },error,{p2p: true});
+                        }
+                    }
+                });
+            } else {
+                res.render('404', { title: 'Page Not Found'});
+            }
+       });
+    });
+    
+    app.post('/getMeetingId', function (req, res) {
+         PR.isDoctor(req.session.user.dni,
+                   req.session.db,
+                   function(e,o){
+            if (o) {
+                if (meetingRoom) {
+                    res.send(meetingRoom);
+                }
+                else {
+                    N.API.getRooms(function (roomlist) {
+                        var rooms = JSON.parse(roomlist);
+                        for (var x=0; x<rooms.length; x++){
+                            if (rooms[x].name === 'meetingRoom'){
+				                meetingRoom  = rooms[x]._id;
+				                console.log('Using room ', meetingRoom);
+				                res.send(meetingRoom);
+			                }
+			            }
+			            if (!meetingRoom){
+			                res.render('404', { title: 'Page Not Found'});
+			            }
+			       });
+                }
+		    } else {
+		        res.render('404', { title: 'Page Not Found'});
+		    }
+	    });
+    });
+    
+     app.get('/meeting/:id', function(req, res) {
+        if (req.session.user === undefined){
+            // if user is not logged-in redirect back to not found page //
+            res.render('404', { title: 'Page Not Found'});
+        } 
+        else {
+            PR.isDoctor( req.session.user.dni,
+                            req.session.db,
+                            function(e , o) {
+                if (o) {
+                    res.render('meeting', {
+                                title : 'Meeting',
+                                udata : req.session.user
+                    });
+                   
+                }else{
+                    res.render('404', { title: 'Page Not Found'});
+                }
+            });
         }
     });
 

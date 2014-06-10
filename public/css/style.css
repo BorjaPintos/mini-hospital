@@ -72,6 +72,10 @@ body {
   width: 910px;
   margin: 160px auto;
 }
+#meeting-container {
+  width: 910px;
+  margin: 160px auto;
+}
 #timetable-container {
   width: 910px;
   margin: 160px auto;
@@ -97,6 +101,26 @@ body {
   width: 640px;
   height: 480px;
   float: right; 
+}
+#video-container-meeting {
+  width: 1280px;
+  height: 480px;
+  border: 1px solid #012c79;
+  margin-left: 35px;
+  margin-top: 29px;
+  background-color: #fff;
+}
+.grid_element_border {
+  float: left;
+  position: relative;
+  background-color: #fff;
+}
+.grid_element {
+  position: absolute;
+  bottom: 1px;
+  top: 1px;
+  right: 1px;
+  left: 1px;
 }
 #btn-end{
   margin-left: 640px;
