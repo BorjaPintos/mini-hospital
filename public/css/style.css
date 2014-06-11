@@ -56,6 +56,7 @@ body {
 #account-form-container label{
   margin: 0px 15px 5px 5px;
 }
+
 #orderDate-container {
   width: 910px;
   margin: 160px auto;
@@ -73,8 +74,9 @@ body {
   margin: 160px auto;
 }
 #meeting-container {
-  width: 910px;
+  width: 110px;
   margin: 160px auto;
+  float: center;
 }
 #timetable-container {
   width: 910px;

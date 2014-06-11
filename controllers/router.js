@@ -192,9 +192,9 @@ module.exports = function(app) {
             pass    : 'mini-hospital',
         }, function(e){
             if (e){
-                res.send(e, 400);
+                res.render('404', { title: 'Page Not Found'});
             }    else{
-                res.send('ok', 200);
+                res.render('success', { title: 'OK'});
             }
         });
 
@@ -479,7 +479,6 @@ module.exports = function(app) {
     
     app.get('/createMeeting', function (req,res){
     
-    
         var error = function(){
             res.send('error create meetingRoom p2p', 400);
             console.log('error on createRoom p2p');
@@ -495,7 +494,7 @@ module.exports = function(app) {
 		                N.API.createRoom('meetingRoom', function (roomID) {
 		                    meetingRoom = roomID._id;
 		                    console.log('Created room ', meetingRoom);
-		                    res.send('ok');
+		                    res.render('success', { title: 'OK'});
 		                },error,{p2p: true});
 
 		            } else {
@@ -503,7 +502,7 @@ module.exports = function(app) {
                             if (rooms[x].name === 'meetingRoom'){
 				                meetingRoom  = rooms[x]._id;
 				                console.log('Using room ', meetingRoom);
-				                res.send('ok');
+				                res.render('success', { title: 'OK'});
 				                continue;
 			                }
 			            }
@@ -511,7 +510,7 @@ module.exports = function(app) {
                             N.API.createRoom('meetingRoom', function (roomID) {
                                 meetingRoom = roomID._id;
                                 console.log('Created room ', meetingRoom);
-                                res.send('ok');
+                                res.render('success', { title: 'OK'});
                             },error,{p2p: true});
                         }
                     }
@@ -617,7 +616,7 @@ module.exports = function(app) {
             { title: 'You need a Certificate'}); 
     });
 
-    app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
+    app.get('*', function(req, res) {res.render('404', { title: 'Page Not Found'}); });
 
 
 };
