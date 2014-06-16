@@ -24,6 +24,7 @@ var express = require('express'),
 var options = {
     key: fs.readFileSync(path.join('./artifacts/keys/private/mini-hospital-key.pem')),
     cert: fs.readFileSync(path.join('./artifacts/keys/mini-hospital-cert.pem')),
+    passphrase: 'mini-hospital',
 };
 
 var app = express(),
@@ -60,6 +61,7 @@ var optionsCert = {
     cert: fs.readFileSync(path.join('./artifacts/keys/mini-hospital-cert.pem')),
     ca: [fs.readFileSync('./artifacts/ca/ACRAIZ-SHA1-PEM.crt')],
     requestCert: true,
+    passphrase: 'mini-hospital',
 };
 
 var appCert = express();
